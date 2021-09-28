@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.8.10] - 2021-09-01
+
+### Added
+- Add kube-proxy health checker on linux. (https://github.com/kubernetes/node-problem-detector/pull/575, @uthark) 
+
+### Fixed
+- Fix a systemstatsmonitor nil pointer panic. (https://github.com/kubernetes/node-problem-detector/pull/587, @vteratipally)
+- Fix a critical issue in NPD healthchecker on windows, that would consume 100% cpu. (https://github.com/kubernetes/node-problem-detector/pull/609, https://github.com/kubernetes/node-problem-detector/pull/612, @mcshooter)
+
+### Removed
+- Remove aufs hung check from the kernel monitor. (https://github.com/kubernetes/node-problem-detector/pull/596, @lizhuqi)
+
+## [0.8.9] - 2021-06-25
+
+### Added
+- Added ARM support (https://github.com/kubernetes/node-problem-detector/pull/561, @pwschuurman)
+
+### Changed
+- Imporved Health Checker (https://github.com/kubernetes/node-problem-detector/pull/539, @smileusd)
+    - Added loopbacktime to reduce time of journalctl call 
+    - Added health-ckecker deploy file
+- Improve Windows support
+    - Added Windows Depenfer monitor (https://github.com/kubernetes/node-problem-detector/pull/567, @mcshooter)
+    - Add HCS empty layer error reporting (https://github.com/kubernetes/node-problem-detector/pull/585, @jeremyje)
+    - Support building binaries for Windows separately (https://github.com/kubernetes/node-problem-detector/pull/574, @mcshooter) 
+- Updated base docker debian image to fix some CVE (https://github.com/kubernetes/node-problem-detector/pull/577, @teratipally)
+- Log error from kube-api (https://github.com/kubernetes/node-problem-detector/pull/583, @pezzak)
+- Refactor disk_collector (https://github.com/kubernetes/node-problem-detector/pull/578, @teratipally)
+
+### Fixed
+- Fix e2e-test flakes for Ext4 counter (https://github.com/kubernetes/node-problem-detector/pull/570, @pwschuurman)
+
+## [0.8.8] - 2020-05-15
+
+### Added
+- Added windows support
+  - Build NPD binary and include in the release tarball (https://github.com/kubernetes/node-problem-detector/pull/517, https://github.com/kubernetes/node-problem-detector/pull/545, @jeremyje)
+  - Support containerd log monitor on windows (https://github.com/kubernetes/node-problem-detector/pull/517, https://github.com/kubernetes/node-problem-detector/pull/542, https://github.com/kubernetes/node-problem-detector/pull/550, @jeremyje @mcshooter)
+  - Support running NPD as a windows service (https://github.com/kubernetes/node-problem-detector/pull/541, @jeremyje)
+  - Support containerd health checker on windows (https://github.com/kubernetes/node-problem-detector/pull/544, @mcshooter)
+  - Support kube-proxy health checker on windows (https://github.com/kubernetes/node-problem-detector/pull/552, @mcshooter)
+  - Support basic system metrics on windows (https://github.com/kubernetes/node-problem-detector/pull/554, @jeremyje)
+  - Support windows defender problem detection (https://github.com/kubernetes/node-problem-detector/pull/555, @mcshooter)
+- Add taint tolerations to the NPD yaml (https://github.com/kubernetes/node-problem-detector/pull/551, @cmssczy)
+
+### Fixed
+- Fix the `known-modules.json` relative path in the system stats monitor (https://github.com/kubernetes/node-problem-detector/pull/557, @vteratipally)
+- Fix health checker uptime timestamp parsing (https://github.com/kubernetes/node-problem-detector/pull/558, @Random-Liu)
+
 ## [0.8.7] - 2020-02-18
 
 ### Added
@@ -339,7 +388,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial version of node problem detector.
 
-[Unreleased]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.6...HEAD
+[Unreleased]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.10...HEAD
+[0.8.10]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.9...v0.8.10
+[0.8.9]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.8...v0.8.9
+[0.8.8]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.7...v0.8.8
+[0.8.7]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.6...v0.8.7
 [0.8.6]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.5...v0.8.6
 [0.8.5]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.4...v0.8.5
 [0.8.4]: https://github.com/kubernetes/node-problem-detector/compare/v0.8.3...v0.8.4
